@@ -181,7 +181,9 @@ module Users
     end
 
     def otp_rate_limiter
-      @_otp_rate_limited ||= OtpRateLimiter.new(phone: phone_to_deliver_to, user: current_user)
+      @_otp_rate_limited ||= OtpRateLimiter.new(phone: phone_to_deliver_to,
+                                                user: current_user,
+                                                phone_confirmed: authentication_context?)
     end
   end
 end

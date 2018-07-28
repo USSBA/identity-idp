@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180709141748) do
+ActiveRecord::Schema.define(version: 20180723091143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,7 +92,8 @@ ActiveRecord::Schema.define(version: 20180709141748) do
     t.string "phone_fingerprint", default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["phone_fingerprint"], name: "index_otp_requests_trackers_on_phone_fingerprint", unique: true
+    t.boolean "phone_confirmed", default: false
+    t.index ["phone_fingerprint", "phone_confirmed"], name: "index_on_phone_and_confirmed", unique: true
     t.index ["updated_at"], name: "index_otp_requests_trackers_on_updated_at"
   end
 
